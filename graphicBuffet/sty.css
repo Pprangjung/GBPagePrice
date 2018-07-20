@@ -1,0 +1,935 @@
+
+@import url('https://fonts.googleapis.com/css?family=Prompt:300,400,500,700');/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+    height:auto;
+}
+.showMobile{display: block;}
+body{
+    width: 100%; 
+    height: auto;
+    margin: 0; 
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Prompt', sans-serif;
+    
+}
+
+
+/* ------------- */
+.menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 46px;
+  width: 46px;
+}
+
+.menu-link {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1002;
+}
+
+.menu-icon {
+  position: absolute;
+  width: 20px;
+  height: 14px;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 1px;
+}
+
+/* ------------- */
+.menu-line {
+  background-color: #333;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  transition: all 0.25s ease-in-out;
+}
+.menu-line-2 {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.menu-line-3 {
+  bottom: 0;
+}
+.menu.open .menu-line-1 {
+  -webkit-transform: translateY(7px) translateY(-50%) rotate(-45deg);
+          transform: translateY(7px) translateY(-50%) rotate(-45deg);
+}
+.menu.open .menu-line-2 {
+  opacity: 0;
+}
+.menu.open .menu-line-3 {
+  -webkit-transform: translateY(-7px) translateY(50%) rotate(45deg);
+          transform: translateY(-7px) translateY(50%) rotate(45deg);
+}
+
+/* ------------- */
+.menu-circle {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  z-index: 1000;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+.menu:hover .menu-circle {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+.menu.open .menu-circle {
+  -webkit-transform: scale(60);
+          transform: scale(60);
+}
+
+/* ------------- */
+.menu-overlay {
+  background-color: #fff;
+  color: #333;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ------------- */
+
+.word {
+  position: absolute;
+  width: 220px;
+  opacity: 0;
+  font-family: 'Prompt', sans-serif;
+  margin-left: -10px;
+}
+
+.letter {
+  display: inline-block;
+  position: relative;
+ 
+  transform: translateZ(25px);
+  transform-origin: 50% 50% 25px;
+}
+
+.letter.out {
+  transform: rotateX(90deg);
+  transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.letter.behind {
+  transform: rotateX(-90deg);
+}
+
+.letter.in {
+  transform: rotateX(0deg);
+  transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wisteria {
+  color: #fff;
+}
+
+.belize {
+  color: #fff;
+}
+
+.pomegranate {
+  color: #fff;
+}
+
+
+/* ------------- */
+/* --- */
+.video-link {
+  display: inline-block;
+ 
+  text-decoration: none;
+  color: white;
+ 
+ 
+}
+/* --- */
+.player {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  background: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.65) 0%, #000000 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.player__video {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  max-width: 75%;
+  background-color: #fff;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.95);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.js--show-video {
+  opacity: 1;
+}
+.video-filler {
+  display: block;
+  width: 100%;
+}
+.video-close {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: -30px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  color: #000;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+}
+.video-iframe {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 10px solid #fff;
+}
+/* ------------- */
+@media only screen and (min-width: 300px) {
+#Header{
+    width: 100%;
+    height: auto;
+    margin:0;
+    padding: 0;
+    float: left;
+}
+.logo{
+    max-width:80%;
+    height: auto;
+    z-index: 3;
+    position: absolute;
+    margin:0;
+    padding: 0;
+    margin: 30px 0 0 20px;
+}
+
+
+.logo img{max-width: 50%; height: auto;}
+.SubHeader{
+    width: 100%;
+    height: auto;
+    margin:0;
+    padding: 0;
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+}
+.SubHeader img{max-width: 100%; height:auto; }
+.headerText{
+    width: 100%; 
+    height: auto;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+    font-size: 40px;
+    z-index: 3;
+    position: absolute;
+   margin-left: 45px;
+    margin-top:25%;
+    letter-spacing: 1px;
+}
+.SubHeaderText{
+    width: 90%;
+    padding: 5%; 
+    height: auto;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+    font-size: 16px;
+    z-index: 3;
+    position: absolute;
+    text-align: center;
+    margin-top:40%;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+.button{
+    width: 60%; 
+    height: 35px; 
+    background-color: #000;
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+    margin:60% 20% 0 20%;
+    text-align: center;
+    padding: 3% 0;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    -webkit-transition: background-color 2s ease-out;
+   -moz-transition: background-color 2s ease-out;
+   -o-transition: background-color 2s ease-out;
+   transition: background-color 2s ease-out;
+
+}
+
+.button:hover{
+cursor: pointer;
+background: #f857a6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.button2{
+    width: 60%; 
+    height: 35px; 
+    background-color: #4938F2;
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+    margin:80% 20% 0 20%;
+    text-align: center;
+    padding: 3% 0;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    -webkit-transition: background-color 2s ease-out;
+   -moz-transition: background-color 2s ease-out;
+   -o-transition: background-color 2s ease-out;
+   transition: background-color 2s ease-out;
+
+}
+
+.button2:hover{
+cursor: pointer;
+background: #f857a6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#BoxShop{
+    width: 100%; 
+    position: absolute;
+    height: auto; 
+    margin-top: 190%;
+    margin-bottom: 3%;
+    color: #2D009A;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.BoxShopText{
+    width: 96%; 
+    float: left;
+    height: auto; 
+    padding: 2%;
+    color: #2D009A;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.BoxPack1{
+    width: 90%;
+    margin:5%;
+    height: auto;
+
+    float: left;
+  
+}
+
+.InBoxPack1{
+    width: 100%;
+   
+     float: left;
+     color: #fff;
+     letter-spacing: 1px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+  
+}
+.InBoxPack1 img{max-width: 100%; height: auto;}
+
+
+.buttonPack{
+    width: 60%; 
+    height: 35px; 
+    background-color: #4938F2;
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+   margin-top: -50%;
+   margin-left: 15%;
+    text-align: center;
+    padding: 3% 0;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    -webkit-transition: background-color 2s ease-out;
+   -moz-transition: background-color 2s ease-out;
+   -o-transition: background-color 2s ease-out;
+   transition: background-color 2s ease-out;
+
+} 
+.buttonPack:hover{
+ cursor: pointer;
+ color: #fff;
+background: #f857a6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
+
+.buttonPack1{
+    width: 60%; 
+    height: 35px; 
+   position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+   margin-top: -50%;
+   margin-left: 15%;
+    text-align: center;
+    padding: 3% 0;
+    letter-spacing: 1px;
+    border-radius: 30px;
+   background: #f857a6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ -webkit-transition: background-color 2s ease-out;
+   -moz-transition: background-color 2s ease-out;
+   -o-transition: background-color 2s ease-out;
+   transition: background-color 2s ease-out;
+} 
+.buttonPack1:hover{
+ cursor: pointer;
+ color: #fff;
+background: #8E2DE2;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+a{text-decoration: none; color: #fff;}
+
+ #BoxBg2{
+    width: 100%; 
+    float: left;
+    height: auto; 
+    margin-top: 1610%;
+    margin-bottom: 3%;
+    color: #2D009A;
+    text-align: center;
+    letter-spacing: 1px;
+    background-color: #ccc;
+}
+
+#BoxShopReQ{
+    width: 100%; 
+    position: absolute;
+    height: auto; 
+    margin-top: 1730%;
+    margin-bottom: 3%;
+    color: #2D009A;
+    text-align: center;
+    letter-spacing: 1px;
+    
+}
+
+.FormReQ{
+    width: 100%;
+    height: auto;
+    float: left;
+    
+    text-align: left;
+}
+
+label{
+    width: 100%; 
+    height: auto; 
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+
+}
+
+input{
+    width: 90%;
+    height: auto;
+    font-size: 16px;
+    margin: 3% 3%;
+    padding: 2% 2%;
+    font-family: 'Prompt', sans-serif;
+    border-radius: 20px;
+    border: 1px solid #000;
+
+
+}
+
+#service{  
+    width: 93%;
+    height: auto;
+    font-size: 16px;
+    margin: 3% 3%;
+    padding: 7% 2%;
+    font-family: 'Prompt', sans-serif;
+    border-radius: 25px;
+    border: 1px solid #000;
+}
+
+.buttonSend{
+    width: 60%;
+    height: auto;
+    font-size: 18px;
+    margin: 3% 0 0 20%;
+    padding: 4% 2%;
+    font-family: 'Prompt', sans-serif;
+    border-radius: 30px;
+   color: #fff;
+   background-color: background: #8E2DE2;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ transition: all 1s ease-out;
+ text-align: center;
+
+
+} 
+
+.buttonSend:hover{
+    background: #f857a6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff5858, #f857a6);
+cursor: pointer;
+}
+
+#footer{
+    padding:10% 0 10% 8%; 
+     width: 92%; 
+    position: absolute;
+    height: auto; 
+    margin-top: 1950%;
+    background-color: #4938F2;
+   color: #fff;
+    text-align: left;
+    letter-spacing: 1px;
+    
+}
+
+p{  font-weight: 300;
+    font-size: 16px;
+  
+    font-family: 'Prompt', sans-serif;
+}
+
+
+h3{
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+     font-size: 18px;
+     
+
+}
+   
+   .showDesk{display: none;}
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+
+    .showMobile{display: none;}
+    .showDesk{display: none;}
+
+    #wrapper{width: 100%;
+        height:500px;
+        overflow-y:hidden; 
+    }
+
+.SubHeader{
+   
+}
+.SubHeader img{max-width: 100%; height:auto; }
+.headerText{
+    width: 100%; 
+    height: auto;
+    font-family: 'Prompt', sans-serif;
+   font-size: 50px;
+    z-index: 3;
+    position: absolute;
+   margin-left: 55px;
+    margin-top:13%;
+    letter-spacing: 1px;
+}
+.SubHeaderText{
+    width: 90%;
+    padding: 5%; 
+    height: auto;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+    font-size: 22px;
+    z-index: 3;
+    position: absolute;
+    text-align: left;
+    margin-top:15%;
+    letter-spacing: 1px;
+    font-weight: 300;
+    margin-left: -5px;
+}
+.button{
+    width: 20%; 
+    height: 15px; 
+    background-color: #000;
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+    margin:30% 0 0 4%;
+    text-align: center;
+    padding-top: 2%;
+    letter-spacing: 1px;
+    border-radius: 40px;
+    -webkit-transition: background-color 2s ease-out;
+   -moz-transition: background-color 2s ease-out;
+   -o-transition: background-color 2s ease-out;
+   transition: background-color 2s ease-out;
+
+}
+
+
+#BoxShop{
+    width: 100%; 
+    position: absolute;
+    height: auto; 
+    margin-top: 50%;
+    margin-bottom: 3%;
+    color: #2D009A;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.BoxShopText{
+    width: 96%; 
+    float: left;
+    height: auto; 
+    padding: 2%;
+    color: #2D009A;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.BoxPackDesk{
+    width: 22%;
+    margin-top:5%;
+    margin-left:5%;
+    height: auto;
+    float: left;
+    color: #fff;
+  
+}
+.BoxPackDesk img{max-width: 100% ; height: auto;}
+.BoxPackDesk1{
+    width: 22%;
+    margin-top:5%;
+    height: auto;
+    float: left;
+    color: #fff;
+  
+}
+.BoxPackDesk1 img{max-width: 100% ; height: auto;}
+.buttonPack{
+    width: 15%; 
+    height: 6px; 
+    background-color: #4938F2;
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+   margin-top: -12%;
+   margin-left: 3.5%;
+    text-align: center;
+    padding-top: 1%;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    -webkit-transition: background-color 2s ease-out;
+   -moz-transition: background-color 2s ease-out;
+   -o-transition: background-color 2s ease-out;
+   transition: background-color 2s ease-out;
+
+} 
+.buttonPackD{
+    height: 100px;
+  width: 100px;
+    background-color: #4938F2;
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+   margin-top: 13%;
+   margin-left: 25.5%;
+    text-align: center;
+   letter-spacing: 1px;
+    border-radius: 50%;
+    -webkit-transition: background-color 1s ease-out;
+   -moz-transition: background-color 1s ease-out;
+   -o-transition: background-color 1s ease-out;
+   transition: background-color 1s ease-out;
+
+} 
+.buttonPackD:hover{
+cursor: pointer;
+background: #f857a6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
+.buttonPackD2{
+    height: 50px;
+  width: 200px;
+    background-color: #000;
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+   margin-top: 22%;
+   margin-left: 66.5%;
+    text-align: center;
+   letter-spacing: 1px;
+    border-radius: 50px;
+    padding-top: 1%;
+    -webkit-transition: background-color 1s ease-out;
+   -moz-transition: background-color 1s ease-out;
+   -o-transition: background-color 1s ease-out;
+   transition: background-color 1s ease-out;
+
+} 
+.buttonPackD2:hover{
+cursor: pointer;
+background: #f857a6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.buttonPack1{
+    width: 15%; 
+    height: 6px; 
+   
+    position: absolute;
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+   margin-top: -12%;
+   margin-left: 3.5%;
+    text-align: center;
+    padding-top: 1%;
+    letter-spacing: 1px;
+    border-radius: 30px;
+  
+
+} 
+
+
+.SubHeaderD{
+    width: 100%;
+    height: auto;
+    margin-top:-1450%;
+    padding: 0;
+    background-size: cover;
+   position: absolute;
+    z-index: -1;
+}
+.SubHeaderD img{max-width: 100%; height:auto; }
+
+
+
+#BoxShopReQ{
+    width: 100%; 
+    float: left;
+    height: auto; 
+    margin-top: 200%;
+    margin-bottom: 3%;
+    color: #2D009A;
+    text-align: center;
+    letter-spacing: 1px;
+    
+}
+.FormReIMG{
+    width: 40%;
+    height: auto;
+    float: left;
+    padding: 5%;
+    text-align: left;
+}
+.FormReIMG img{max-width: 100%; height: auto;}
+
+.FormReQ{
+    width: 40%;
+    height: auto;
+    float: right;
+    padding: 5%;
+    text-align: left;
+    margin-top: -70%;
+}
+
+
+label{
+    width: 100%; 
+    height: auto; 
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+
+}
+
+input{
+    width: 90%;
+    height: auto;
+    font-size: 16px;
+    margin: 1%;
+    padding: 2% 2%;
+    font-family: 'Prompt', sans-serif;
+    border-radius: 20px;
+    border: 1px solid #000;
+    background-color: transparent;
+
+
+}
+
+.buttonSend{
+    width: 35%;
+    height: auto;
+    font-size: 18px;
+    margin: 3% 0 0 3%;
+    padding: 4% 2%;
+    font-family: 'Prompt', sans-serif;
+    border-radius: 50px;
+   color: #fff;
+   background-color: background: #8E2DE2;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ transition: all 1s ease-out;
+ text-align: center;
+
+
+} 
+
+
+#footer{
+    padding:2% 0 2% 8%; 
+     width: 92%; 
+    float: left;
+    height: auto; 
+    margin-top: 280%;
+    background-color: #4938F2;
+    color: #fff;
+    text-align: left;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    
+}
+
+p{  font-weight: 300;
+    font-size: 14px;
+    margin-top: -2%;
+    font-family: 'Prompt', sans-serif;
+}
+
+
+h3{
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+     font-size: 16px;
+     
+
+}
+
+.textInHelp{
+  width: 20%;
+  height: auto;
+ 
+  text-align: left;
+  float: left;
+  font-family: 'Prompt', sans-serif;
+  font-size: 16px;
+  margin-top: -290px;
+  margin-left: 400px;
+  font-weight: 300;
+  line-height: 35px;
+
+}
+
+.textInHelp2{
+  width: 20%;
+  height: auto;
+ 
+  text-align: left;
+  float: left;
+  font-family: 'Prompt', sans-serif;
+  font-size: 16px;
+  margin-top: -290px;
+  margin-left: 800px;
+  font-weight: 300;
+  line-height: 35px;
+
+}
+
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    .showMobile{display: none;}
+    .showDesk{display: block;}
+
+
+}
